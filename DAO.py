@@ -73,7 +73,7 @@ class MentoringDAO(DAO):
         None
         """
         events_list = self.load_csv(self.DATABASE_FILE)
-        for mentoring` in events_list:
+        for mentoring in events_list:
             # mentoring = event.split(',')
             PrivateMentoring(self.make_date(mentoring[0]), mentoring[1], mentoring[2])
 
