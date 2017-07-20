@@ -64,7 +64,3 @@ class PrivateMentoring(Event):
 
     def get_goal(self):
         return self.goal
-
-    @classmethod
-    def add_event(cls, event):
-        pass

@@ -13,7 +13,7 @@ class Controller:
 
     def start(self):
         while True:
-            os.system('clear')
+            # os.system('clear')
             self.view.print_main_menu()
             choice = self.view.get_choice()
             if choice == '1':
@@ -24,7 +24,7 @@ class Controller:
                 self.print_all_events()
             else:
                 self.say_goodbye()
-                sys.exit()
+                break
             redundant = input("Enter Enter 2 continue")
 
     def print_all_events(self):

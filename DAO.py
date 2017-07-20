@@ -74,7 +74,6 @@ class MentoringDAO(DAO):
         """
         events_list = self.load_csv(self.DATABASE_FILE)
         for mentoring in events_list:
-            # mentoring = event.split(',')
             PrivateMentoring(self.make_date(mentoring[0]), mentoring[1], mentoring[2])
 
     def save_mentorings(self):
@@ -83,5 +82,5 @@ class MentoringDAO(DAO):
         """
         data_to_save = []
         for event in PrivateMentoring.events:
-                data_to_save.append([event.get_date(), event.get_mentor(), event.get_goal()])
+            data_to_save.append([event.get_date(), event.get_mentor(), event.get_goal()])
         self.save_csv(data_to_save, self.DATABASE_FILE)
