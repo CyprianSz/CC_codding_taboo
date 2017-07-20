@@ -3,6 +3,7 @@ from datetime import date
 from view import View
 from events import *
 import os
+import sys
 
 
 class Controller:
@@ -23,8 +24,8 @@ class Controller:
                 self.print_all_events()
             else:
                 self.say_goodbye()
+                sys.exit()
             redundant = input("Enter Enter 2 continue")
-
 
     def print_all_events(self):
         self.view.print_all_events(Event.get_events())
@@ -36,11 +37,21 @@ class Controller:
 
     def book_checkpoint(self):
         date = self.book_event()
-        events.Checkpoint(date)
+        Checkpoint(date)
 
     def book_private_menotring(self):
+        mentor = self.choose_mentor()
+        goal = self.view.get_goal()
         date = self.book_event()
-        PrivateMentoring(date)
+        PrivateMentoring(date, mentor, goal)
+
+    def choose_mentor(self):
+        self.view.print_list(PrivateMentoring.MENTORS)
+        return self.choose_from_list(PrivateMentoring.MENTORS)
+
+    def choose_from_list(self, lst):
+        choice = self.view.get_preferred_mentor()
+        return lst[int(choice) - 1]
 
     def say_goodbye(self):
         self.view.print_goodbye()
