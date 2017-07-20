@@ -2,16 +2,17 @@ from datetime import date
 # import date_handle
 from view import View
 from events import *
+import os
 
 
 class Controller:
 
     def __init__(self):
         self.view = View()
-        self.events = Event()
 
     def start(self):
         while True:
+            os.system('clear')
             self.view.print_main_menu()
             choice = self.view.get_choice()
             if choice == '1':
@@ -22,9 +23,11 @@ class Controller:
                 self.print_all_events()
             else:
                 self.say_goodbye()
+            redundant = input("Enter Enter 2 continue")
+
 
     def print_all_events(self):
-        self.view.print_all_events(self.events.get_events())
+        self.view.print_all_events(Event.get_events())
 
     def book_event(self):
         date = self.view.get_event_date()
@@ -37,7 +40,7 @@ class Controller:
 
     def book_private_menotring(self):
         date = self.book_event()
-        events.PrivateMentoring(date)
+        PrivateMentoring(date)
 
     def say_goodbye(self):
         self.view.print_goodbye()
